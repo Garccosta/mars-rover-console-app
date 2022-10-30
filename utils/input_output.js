@@ -1,9 +1,28 @@
 const { calculateFinalPosition } = require('./move_calculations');
+const { isValidCoordinates } = require('./validations');
 const prompt = require('prompt-sync')();
 const fs = require('fs');
 
+const formatPlateauDimensions = (plateauDimensions) => {
+	const MultipleWhiteSpacesRegex = /\s+/g;
+    const formatedInput = plateauDimensions.replace(',', ' ').trim();
+	const [x, y] = formatedInput.split(MultipleWhiteSpacesRegex);
+
+	return {x, y};
+};
+
 const readUserInput = () => {
-	const plateauDimensions = prompt('Please, provide the plateau upper-right coordinates: ');
+	let plateauDimensions = prompt('Please, provide the plateau upper-right coordinates: ');
+	let formatedPlateauDimensions = formatPlateauDimensions(plateauDimensions);
+	
+	let isValidPlateauDimensions = isValidCoordinates(formatedPlateauDimensions);
+	
+	while(!isValidPlateauDimensions)  {
+		plateauDimensions = prompt('Invalid plateau dimensions. Please provide positive non-zero coordinates(x,y): ');
+
+		formatedPlateauDimensions = formatPlateauDimensions(plateauDimensions);
+		isValidPlateauDimensions = isValidCoordinates(formatedPlateauDimensions);
+	}
 
 	let shouldRepeat = true;
 	const roversData = [];
@@ -20,7 +39,7 @@ const readUserInput = () => {
 		});
 	}
 
-	roversData.push(plateauDimensions);
+	roversData.push(formatedPlateauDimensions);
 	return roversData;
 };
 
