@@ -10,13 +10,12 @@ const cardinalPointsMap = new Map<string, number>([
 
 const calculateFinalPosition = (rover: RoverData, plateauDimensions: string[]) => {
 	const { initialPosition, moveInstructions } = rover;
-	const moves = moveInstructions.split('');
-	let [firstCoord, secondCoord, initialDir] = initialPosition.split(' ');
+	let [firstCoord, secondCoord, initialDir] = initialPosition;
 	let [x, y] = [Number(firstCoord), Number(secondCoord)]
 	let currentDir = initialDir;
 	const xMove = ['W', 'E'];
 
-	moves.forEach(move => {
+	moveInstructions.forEach(move => {
 		switch (move) {
 			case 'R':
 				currentDir = calculateCurrentDirection('R', currentDir);

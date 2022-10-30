@@ -1,4 +1,4 @@
 export interface RoverData {
-    initialPosition: string;
-    moveInstructions: string;
+    initialPosition: string[];
+    moveInstructions: string[];
 }

@@ -45,8 +45,8 @@ const readUserInput = (): InputData => {
 
 		shouldRepeat = repeatDecision.toUpperCase() === 'Y';
 		roversData.push({
-			initialPosition,
-			moveInstructions,
+			initialPosition: formatCoordinates(initialPosition),
+			moveInstructions: formatCoordinates(moveInstructions)
 		});
 	}
 
