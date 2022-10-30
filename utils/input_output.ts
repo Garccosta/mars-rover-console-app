@@ -10,7 +10,7 @@ type InputData = {
 	formatedPlateauDimensions: string[];
 }
 
-const formatDimensions = (dimensions: string) => {
+const formatCoordinates = (dimensions: string) => {
 	const MultipleWhiteSpacesRegex = /\s+/g;
 	const notNumberOrValidLettersRegex = /[^1-9|LlRrMmNnSsEeWw-]/g;
 	const parcialFormatedInput = dimensions
@@ -24,14 +24,14 @@ const formatDimensions = (dimensions: string) => {
 
 const readUserInput = (): InputData => {
 	let plateauDimensions: string = prompt('Please, provide the plateau upper-right coordinates: ');
-	let formatedPlateauDimensions = formatDimensions(plateauDimensions);
+	let formatedPlateauDimensions = formatCoordinates(plateauDimensions);
 
 	let isValidPlateauDimensions = isValidCoordinates(formatedPlateauDimensions);
 
 	while (!isValidPlateauDimensions) {
 		plateauDimensions = prompt('Invalid plateau dimensions. Please provide positive non-zero coordinates(x,y): ');
 
-		formatedPlateauDimensions = formatDimensions(plateauDimensions);
+		formatedPlateauDimensions = formatCoordinates(plateauDimensions);
 		isValidPlateauDimensions = isValidCoordinates(formatedPlateauDimensions);
 	}
 
@@ -81,5 +81,5 @@ const displayDataOutput = (inputData: InputData) => {
 export {
 	readUserInput,
 	displayDataOutput,
-	formatDimensions
+	formatCoordinates
 };

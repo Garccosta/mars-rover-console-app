@@ -1,5 +1,5 @@
 import { describe, expect } from '@jest/globals';
-import { formatDimensions } from '../utils/input_output';
+import { formatCoordinates } from '../utils/input_output';
 import { isValidCoordinates } from '../utils/validations';
 
 import { invalidPlateauInputs, validRoverInputs, invalidRoverInputs, correctOutputs } from '../test-sample';
@@ -13,7 +13,7 @@ const { Instructions1,
 describe('User input', () => {
 	it('should return false for validation on empty plateau inputs', () => {
 		let input = emptyInput;
-		let formatedPlateauDimensions = formatDimensions(input);
+		let formatedPlateauDimensions = formatCoordinates(input);
 		let isValidPlateauDimensions = isValidCoordinates(formatedPlateauDimensions);
 
 		expect(isValidPlateauDimensions).toBe(false);
@@ -21,34 +21,34 @@ describe('User input', () => {
 
 	it('should return false for validation on zero plateau inputs', () => {
 		const { zeroXInput } = zeroInputs;
-		let formatedPlateauDimensions = formatDimensions(zeroXInput);
+		let formatedPlateauDimensions = formatCoordinates(zeroXInput);
 		let isValidPlateauDimensions = isValidCoordinates(formatedPlateauDimensions);
 		expect(isValidPlateauDimensions).toBe(false);
 
 		const { zeroYInput } = zeroInputs;
-		formatedPlateauDimensions = formatDimensions(zeroYInput);
+		formatedPlateauDimensions = formatCoordinates(zeroYInput);
 		isValidPlateauDimensions = isValidCoordinates(formatedPlateauDimensions);
 		expect(isValidPlateauDimensions).toBe(false);
 
 		const { zeroXYInput } = zeroInputs;
-		formatedPlateauDimensions = formatDimensions(zeroXYInput);
+		formatedPlateauDimensions = formatCoordinates(zeroXYInput);
 		isValidPlateauDimensions = isValidCoordinates(formatedPlateauDimensions);
 		expect(isValidPlateauDimensions).toBe(false);
 	});
 
 	it('should return false for validation on negative plateau inputs', () => {
 		const { negativeXInput } = negativeInputs;
-		let formatedPlateauDimensions = formatDimensions(negativeXInput);
+		let formatedPlateauDimensions = formatCoordinates(negativeXInput);
 		let isValidPlateauDimensions = isValidCoordinates(formatedPlateauDimensions);
 		expect(isValidPlateauDimensions).toBe(false);
 
 		const { negativeYInput } = negativeInputs;
-		formatedPlateauDimensions = formatDimensions(negativeYInput);
+		formatedPlateauDimensions = formatCoordinates(negativeYInput);
 		isValidPlateauDimensions = isValidCoordinates(formatedPlateauDimensions);
 		expect(isValidPlateauDimensions).toBe(false);
 
 		const { negativeXYInput } = negativeInputs;
-		formatedPlateauDimensions = formatDimensions(negativeXYInput);
+		formatedPlateauDimensions = formatCoordinates(negativeXYInput);
 		isValidPlateauDimensions = isValidCoordinates(formatedPlateauDimensions);
 		expect(isValidPlateauDimensions).toBe(false);
 	});
@@ -61,13 +61,13 @@ describe('User input', () => {
 			landingPositionWithCommasAndSpaces,
 		} = invalidRoverInputs;
 
-		let formatedRoverCoordinates = formatDimensions(InstructionsWithWrongLetters.original);
+		let formatedRoverCoordinates = formatCoordinates(InstructionsWithWrongLetters.original);
 		expect(formatedRoverCoordinates).toEqual(InstructionsWithWrongLetters.formatted);
 
-		formatedRoverCoordinates = formatDimensions(InstructionsWithCommasAndSpaces.original);
+		formatedRoverCoordinates = formatCoordinates(InstructionsWithCommasAndSpaces.original);
 		expect(formatedRoverCoordinates).toEqual(InstructionsWithCommasAndSpaces.formatted);
 
-		formatedRoverCoordinates = formatDimensions(landingPositionWithCommasAndSpaces.original);
+		formatedRoverCoordinates = formatCoordinates(landingPositionWithCommasAndSpaces.original);
 		expect(formatedRoverCoordinates).toEqual(landingPositionWithCommasAndSpaces.formatted);
 
 	});
