@@ -1,15 +1,15 @@
 const singleValidInput = {
-	landingPosition1: '1 2 N', 
-	Instructions1: 'LMLMLMLMM', 
+	landingPosition1: '1 2 N',
+	Instructions1: 'LMLMLMLMM',
 	repeatDecision: 'n'
 };
 
 const multipleValidInputs = {
-	landingPosition1: '1 2 N', 
-	Instructions1: 'LMLMLMLMM', 
+	landingPosition1: '1 2 N',
+	Instructions1: 'LMLMLMLMM',
 	repeatDecision: 'y',
-	landingPosition2: '3 3 E', 
-	Instructions2: 'MRRMMRMRRM' 
+	landingPosition2: '3 3 E',
+	Instructions2: 'MRRMMRMRRM'
 };
 
 const invalidPlateauInputs = {
@@ -27,13 +27,13 @@ const invalidPlateauInputs = {
 };
 
 const correctOutputs = {
-	finalPosition1 : '1 3 N',
-	finalPosition2 : '2 3 S'
+	finalPosition1: '1 3 N',
+	finalPosition2: '2 3 S'
 };
 
-module.exports = {
+export {
 	singleValidInput,
 	multipleValidInputs,
-    invalidPlateauInputs,
+	invalidPlateauInputs,
 	correctOutputs
 };

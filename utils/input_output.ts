@@ -1,23 +1,30 @@
-const { calculateFinalPosition } = require('./move_calculations');
-const { isValidCoordinates } = require('./validations');
-const prompt = require('prompt-sync')();
-const fs = require('fs');
+import { RoverData } from './../interfaces/roverData';
+import { calculateFinalPosition } from './move_calculations';
+import { isValidCoordinates } from './validations';
+import prsync from 'prompt-sync';
+import fs from 'fs';
+const prompt = prsync();
 
-const formatDimensions = (dimensions) => {
+type InputData = {
+	roversData: RoverData[];
+	formatedPlateauDimensions: string[];
+}
+
+const formatDimensions = (dimensions: string) => {
 	const MultipleWhiteSpacesRegex = /\s+/g;
-    const parcialFormatedInput = dimensions.replace(',', ' ').trim();
+	const parcialFormatedInput = dimensions.replace(',', ' ').trim();
 	const formatedInput = parcialFormatedInput.split(MultipleWhiteSpacesRegex);
 
 	return formatedInput;
 };
 
-const readUserInput = () => {
-	let plateauDimensions = prompt('Please, provide the plateau upper-right coordinates: ');
+const readUserInput = (): InputData => {
+	let plateauDimensions: string = prompt('Please, provide the plateau upper-right coordinates: ');
 	let formatedPlateauDimensions = formatDimensions(plateauDimensions);
-	
+
 	let isValidPlateauDimensions = isValidCoordinates(formatedPlateauDimensions);
-	
-	while(!isValidPlateauDimensions)  {
+
+	while (!isValidPlateauDimensions) {
 		plateauDimensions = prompt('Invalid plateau dimensions. Please provide positive non-zero coordinates(x,y): ');
 
 		formatedPlateauDimensions = formatDimensions(plateauDimensions);
@@ -25,7 +32,7 @@ const readUserInput = () => {
 	}
 
 	let shouldRepeat = true;
-	const roversData = [];
+	const roversData: RoverData[] = [];
 
 	while (shouldRepeat) {
 		const initialPosition = prompt('Please provide the rover´s landing position(x, y, N|S|E|W): ');
@@ -39,22 +46,24 @@ const readUserInput = () => {
 		});
 	}
 
-	roversData.push(formatedPlateauDimensions);
-	return roversData;
+	return {
+		roversData,
+		formatedPlateauDimensions
+	};
 };
 
-const displayDataOutput = (roversData) => {
-	const plateauDimensions = roversData.pop();
+const displayDataOutput = (inputData: InputData) => {
+	const { roversData, formatedPlateauDimensions } = inputData;
 	let fullRoversReport = '';
 
-	roversData.forEach( (rover, index) => {
-		const finalPosition = calculateFinalPosition(rover, plateauDimensions);
+	roversData.forEach((rover, index: number) => {
+		const finalPosition = calculateFinalPosition(rover, formatedPlateauDimensions);
 
 		const roverReportData = `Rover #${index}` + '\n'
-		+ `Landing Position: ${rover.initialPosition}` + '\n'
-		+ `Instruction: ${rover.moveInstructions}` + '\n'
-		+ `Final Position: ${finalPosition}` + '\n' 
-		+ '---------------------------' + '\n';
+			+ `Landing Position: ${rover.initialPosition}` + '\n'
+			+ `Instruction: ${rover.moveInstructions}` + '\n'
+			+ `Final Position: ${finalPosition}` + '\n'
+			+ '---------------------------' + '\n';
 
 		fullRoversReport += roverReportData;
 	});
@@ -63,9 +72,9 @@ const displayDataOutput = (roversData) => {
 		if (err) throw err;
 		console.log('All Rovers finished their survey and their reports were sucessfully created!');
 	});
-}; 
+};
 
-module.exports = {
+export {
 	readUserInput,
 	displayDataOutput,
 	formatDimensions

@@ -9,6 +9,8 @@ node_modules/
 # Optional npm cache directory
 .npm
 
+# Tests coverage results
+coverage/
 
 
 

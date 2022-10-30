@@ -1,9 +1,9 @@
-const { describe, expect } = require('@jest/globals');
-const { formatDimensions } = require('../utils/input_output.js');
-const { isValidCoordinates } = require('../utils/validations');
+import { describe, expect } from '@jest/globals';
+import { formatDimensions } from '../utils/input_output';
+import { isValidCoordinates } from '../utils/validations';
 
-const { invalidPlateauInputs } = require('../test-sample');
-const { emptyInput, zeroInputs, negativeInputs} = invalidPlateauInputs;
+import { invalidPlateauInputs } from '../test-sample';
+const { emptyInput, zeroInputs, negativeInputs } = invalidPlateauInputs;
 
 describe('User input', () => {
 	it('should return false for validation on empty plateau inputs', () => {
