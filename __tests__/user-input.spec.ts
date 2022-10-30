@@ -2,13 +2,8 @@ import { describe, expect } from '@jest/globals';
 import { formatCoordinates } from '../utils/input_output';
 import { isValidCoordinates } from '../utils/validations';
 
-import { invalidPlateauInputs, validRoverInputs, invalidRoverInputs, correctOutputs } from '../test-sample';
+import { invalidPlateauInputs, invalidRoverInputs } from '../test-sample';
 const { emptyInput, zeroInputs, negativeInputs } = invalidPlateauInputs;
-const { Instructions1,
-	Instructions2,
-	landingPosition1,
-	landingPosition2
-} = validRoverInputs;
 
 describe('User input', () => {
 	it('should return false for validation on empty plateau inputs', () => {
