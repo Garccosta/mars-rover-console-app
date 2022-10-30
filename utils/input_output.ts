@@ -12,8 +12,12 @@ type InputData = {
 
 const formatDimensions = (dimensions: string) => {
 	const MultipleWhiteSpacesRegex = /\s+/g;
-	const parcialFormatedInput = dimensions.replace(',', ' ').trim();
-	const formatedInput = parcialFormatedInput.split(MultipleWhiteSpacesRegex);
+	const notNumberOrValidLettersRegex = /[^1-9|LlRrMmNnSsEeWw-]/g;
+	const parcialFormatedInput = dimensions
+		.replace(notNumberOrValidLettersRegex, ' ')
+		.replace(MultipleWhiteSpacesRegex, '')
+		.trim();
+	const formatedInput = parcialFormatedInput.split('');
 
 	return formatedInput;
 };

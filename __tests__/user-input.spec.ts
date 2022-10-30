@@ -64,11 +64,11 @@ describe('User input', () => {
 		let formatedRoverCoordinates = formatDimensions(InstructionsWithWrongLetters.original);
 		expect(formatedRoverCoordinates).toEqual(InstructionsWithWrongLetters.formatted);
 
-		formatedRoverCoordinates = formatDimensions(InstructionsWithCommasAndSpaces);
-		expect(formatedRoverCoordinates).toEqual(['1', '2', 'N']);
+		formatedRoverCoordinates = formatDimensions(InstructionsWithCommasAndSpaces.original);
+		expect(formatedRoverCoordinates).toEqual(InstructionsWithCommasAndSpaces.formatted);
 
-		formatedRoverCoordinates = formatDimensions(landingPositionWithCommasAndSpaces);
-		expect(formatedRoverCoordinates).toEqual(['1', '2', 'N']);
+		formatedRoverCoordinates = formatDimensions(landingPositionWithCommasAndSpaces.original);
+		expect(formatedRoverCoordinates).toEqual(landingPositionWithCommasAndSpaces.formatted);
 
 	});
 });

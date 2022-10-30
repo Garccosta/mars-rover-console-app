@@ -11,12 +11,18 @@ const correctOutputs = {
 };
 
 const invalidRoverInputs = {
-	landingPositionWithCommasAndSpaces: ' 1,2, N ',
+	landingPositionWithCommasAndSpaces: {
+		original: ' 1,2, N ',
+		formatted: ['1', '2', 'N']
+	},
 	InstructionsWithWrongLetters: {
 		original: 'LGLMFRLMK',
 		formatted: ['L', 'L', 'M', 'R', 'L', 'M']
 	},
-	InstructionsWithCommasAndSpaces: ' M, R R,M,M,R,  M,R,R,M '
+	InstructionsWithCommasAndSpaces: {
+		original: ' M, R R,M,M,R,  M,R,R,M ',
+		formatted: ['M', 'R', 'R', 'M', 'M', 'R', 'M', 'R', 'R', 'M']
+	}
 };
 
 const invalidPlateauInputs = {
