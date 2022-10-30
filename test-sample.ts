@@ -1,19 +1,27 @@
-const singleValidInput = {
+const validRoverInputs = {
 	landingPosition1: '1 2 N',
 	Instructions1: 'LMLMLMLMM',
-	repeatDecision: 'n'
-};
-
-const multipleValidInputs = {
-	landingPosition1: '1 2 N',
-	Instructions1: 'LMLMLMLMM',
-	repeatDecision: 'y',
 	landingPosition2: '3 3 E',
 	Instructions2: 'MRRMMRMRRM'
 };
 
+const correctOutputs = {
+	finalPosition1: '1 3 N',
+	finalPosition2: '2 3 S'
+};
+
+const invalidRoverInputs = {
+	landingPositionWithCommasAndSpaces: ' 1,2, N ',
+	InstructionsWithWrongLetters: {
+		original: 'LGLMFRLMK',
+		formatted: ['L', 'L', 'M', 'R', 'L', 'M']
+	},
+	InstructionsWithCommasAndSpaces: ' M, R R,M,M,R,  M,R,R,M '
+};
+
 const invalidPlateauInputs = {
 	emptyInput: '',
+	inputWithCommas: '1, 0',
 	zeroInputs: {
 		zeroXInput: '1 0',
 		zeroYInput: '0 1',
@@ -26,14 +34,10 @@ const invalidPlateauInputs = {
 	}
 };
 
-const correctOutputs = {
-	finalPosition1: '1 3 N',
-	finalPosition2: '2 3 S'
-};
 
 export {
-	singleValidInput,
-	multipleValidInputs,
+	validRoverInputs,
 	invalidPlateauInputs,
+	invalidRoverInputs,
 	correctOutputs
 };

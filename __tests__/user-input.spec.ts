@@ -2,8 +2,13 @@ import { describe, expect } from '@jest/globals';
 import { formatDimensions } from '../utils/input_output';
 import { isValidCoordinates } from '../utils/validations';
 
-import { invalidPlateauInputs } from '../test-sample';
+import { invalidPlateauInputs, validRoverInputs, invalidRoverInputs, correctOutputs } from '../test-sample';
 const { emptyInput, zeroInputs, negativeInputs } = invalidPlateauInputs;
+const { Instructions1,
+	Instructions2,
+	landingPosition1,
+	landingPosition2
+} = validRoverInputs;
 
 describe('User input', () => {
 	it('should return false for validation on empty plateau inputs', () => {
@@ -48,11 +53,22 @@ describe('User input', () => {
 		expect(isValidPlateauDimensions).toBe(false);
 	});
 
-	it('should format correctly the rover input data', () => {
-		let input = emptyInput;
-		let formatedPlateauDimensions = formatDimensions(input);
-		let isValidPlateauDimensions = isValidCoordinates(formatedPlateauDimensions);
+	it('should format correctly the rover coordinates input data', () => {
 
-		expect(isValidPlateauDimensions).toBe(false);
+		const {
+			InstructionsWithWrongLetters,
+			InstructionsWithCommasAndSpaces,
+			landingPositionWithCommasAndSpaces,
+		} = invalidRoverInputs;
+
+		let formatedRoverCoordinates = formatDimensions(InstructionsWithWrongLetters.original);
+		expect(formatedRoverCoordinates).toEqual(InstructionsWithWrongLetters.formatted);
+
+		formatedRoverCoordinates = formatDimensions(InstructionsWithCommasAndSpaces);
+		expect(formatedRoverCoordinates).toEqual(['1', '2', 'N']);
+
+		formatedRoverCoordinates = formatDimensions(landingPositionWithCommasAndSpaces);
+		expect(formatedRoverCoordinates).toEqual(['1', '2', 'N']);
+
 	});
 });
