@@ -45,19 +45,23 @@ const readUserInput = () => {
 
 const displayDataOutput = (roversData) => {
 	const plateauDimensions = roversData.pop();
+	let fullRoversReport = '';
 
-	roversData.forEach( rover => {
+	roversData.forEach( (rover, index) => {
 		const finalPosition = calculateFinalPosition(rover, plateauDimensions);
 
-		const roverReportData = `Landing Position: ${rover.initialPosition}` 
-    + '\n'
-    + `Instruction: ${rover.moveInstructions}` + '\n'
-    + `Final Position: ${finalPosition}`;
+		const roverReportData = `Rover #${index}` + '\n'
+		+ `Landing Position: ${rover.initialPosition}` + '\n'
+		+ `Instruction: ${rover.moveInstructions}` + '\n'
+		+ `Final Position: ${finalPosition}` + '\n' 
+		+ '---------------------------' + '\n';
 
-		fs.appendFile('report.txt', roverReportData, (err) => {
-			if (err) throw err;
-			console.log('Rover report was sucessfully created!');
-		});
+		fullRoversReport += roverReportData;
+	});
+
+	fs.writeFile('report.txt', fullRoversReport, (err) => {
+		if (err) throw err;
+		console.log('All Rovers finished their survey and their reports were sucessfully created!');
 	});
 }; 
 
