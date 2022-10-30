@@ -3,24 +3,24 @@ const { isValidCoordinates } = require('./validations');
 const prompt = require('prompt-sync')();
 const fs = require('fs');
 
-const formatPlateauDimensions = (plateauDimensions) => {
+const formatDimensions = (dimensions) => {
 	const MultipleWhiteSpacesRegex = /\s+/g;
-    const formatedInput = plateauDimensions.replace(',', ' ').trim();
-	const [x, y] = formatedInput.split(MultipleWhiteSpacesRegex);
+    const parcialFormatedInput = dimensions.replace(',', ' ').trim();
+	const formatedInput = parcialFormatedInput.split(MultipleWhiteSpacesRegex);
 
-	return {x, y};
+	return formatedInput;
 };
 
 const readUserInput = () => {
 	let plateauDimensions = prompt('Please, provide the plateau upper-right coordinates: ');
-	let formatedPlateauDimensions = formatPlateauDimensions(plateauDimensions);
+	let formatedPlateauDimensions = formatDimensions(plateauDimensions);
 	
 	let isValidPlateauDimensions = isValidCoordinates(formatedPlateauDimensions);
 	
 	while(!isValidPlateauDimensions)  {
 		plateauDimensions = prompt('Invalid plateau dimensions. Please provide positive non-zero coordinates(x,y): ');
 
-		formatedPlateauDimensions = formatPlateauDimensions(plateauDimensions);
+		formatedPlateauDimensions = formatDimensions(plateauDimensions);
 		isValidPlateauDimensions = isValidCoordinates(formatedPlateauDimensions);
 	}
 
@@ -67,5 +67,6 @@ const displayDataOutput = (roversData) => {
 
 module.exports = {
 	readUserInput,
-	displayDataOutput
+	displayDataOutput,
+	formatDimensions
 };

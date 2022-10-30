@@ -1,5 +1,6 @@
 const isValidCoordinates = (dimensions) => {
-	const {x, y} = dimensions;
+	const x = dimensions[0];
+	const y = dimensions[1];
 
 	return x > 0 && y > 0;
 };
