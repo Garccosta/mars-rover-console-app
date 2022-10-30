@@ -1,7 +1,7 @@
 import { RoverData } from './../interfaces/roverData';
 import { describe, expect } from '@jest/globals';
-import { formatCoordinates } from '../utils/input_output';
-import { calculateFinalPosition } from '../utils/move_calculations'
+import { formatCoordinates } from '../src/modules/input_output';
+import { calculateFinalPosition } from '../src/utils/move_calculations'
 
 import { validRoverInputs, correctOutputs } from '../test-sample';
 

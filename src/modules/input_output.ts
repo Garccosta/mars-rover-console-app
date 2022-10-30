@@ -1,6 +1,6 @@
-import { RoverData } from './../interfaces/roverData';
-import { calculateFinalPosition } from './move_calculations';
-import { isValidCoordinates } from './validations';
+import { RoverData } from '../interfaces/roverData';
+import { calculateFinalPosition } from '../utils/move_calculations';
+import { isValidCoordinates } from '../utils/validations';
 import prsync from 'prompt-sync';
 import fs from 'fs';
 const prompt = prsync();

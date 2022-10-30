@@ -2,11 +2,11 @@
   "name": "voyager",
   "version": "1.0.0",
   "description": "rovers challenge",
-  "main": "index.ts",
+  "main": "app.ts",
   "scripts": {
-    "start": "ts-node index.ts",
+    "start": "ts-node src/app.ts",
     "test": "jest",
-    "lint": "npx eslint index.ts"
+    "lint": "npx eslint src/app.ts"
   },
   "author": "Gabriel Costa",
   "license": "ISC",

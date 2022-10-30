@@ -1,6 +1,6 @@
 import { describe, expect } from '@jest/globals';
-import { formatCoordinates } from '../utils/input_output';
-import { isValidCoordinates } from '../utils/validations';
+import { formatCoordinates } from '../src/modules/input_output';
+import { isValidCoordinates } from '../src/utils/validations';
 
 import { invalidPlateauInputs, invalidRoverInputs } from '../test-sample';
 const { emptyInput, zeroInputs, negativeInputs } = invalidPlateauInputs;
